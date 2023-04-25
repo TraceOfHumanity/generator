@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function PasswordGenerator() {
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [passwordLength, setPasswordLength] = useState(8);
   const [includeSpecialChars, setIncludeSpecialChars] = useState(false);
   const [includeNumbers, setIncludeNumbers] = useState(true);
@@ -9,12 +9,12 @@ function PasswordGenerator() {
   const [avoidDuplicates, setAvoidDuplicates] = useState(false);
 
   const handleGeneratePassword = () => {
-    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const numberChars = '0123456789';
-    const specialChars = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
+    const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+    const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numberChars = "0123456789";
+    const specialChars = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
     let availableChars = lowercaseChars;
-    let generatedPassword = '';
+    let generatedPassword = "";
 
     if (includeUpperCase) {
       availableChars += uppercaseChars;
@@ -48,7 +48,7 @@ function PasswordGenerator() {
   };
 
   return (
-    <div>
+    <div className="z-10"> 
       <label>
         Password Length:
         <input
@@ -60,7 +60,7 @@ function PasswordGenerator() {
         />
         <span>{passwordLength}</span>
       </label>
-      <br />
+
       <label>
         Include Special Characters:
         <input
@@ -69,7 +69,6 @@ function PasswordGenerator() {
           onChange={(e) => setIncludeSpecialChars(e.target.checked)}
         />
       </label>
-      <br />
       <label>
         Include Numbers:
         <input
@@ -78,7 +77,7 @@ function PasswordGenerator() {
           onChange={(e) => setIncludeNumbers(e.target.checked)}
         />
       </label>
-      <br />
+
       <label>
         Include Uppercase:
         <input
@@ -87,7 +86,7 @@ function PasswordGenerator() {
           onChange={(e) => setIncludeUpperCase(e.target.checked)}
         />
       </label>
-      <br />
+
       <label>
         Avoid Duplicates:
         <input
@@ -96,7 +95,7 @@ function PasswordGenerator() {
           onChange={(e) => setAvoidDuplicates(e.target.checked)}
         />
       </label>
-      <br />
+
       <button onClick={handleGeneratePassword}>Generate Password</button>
       <p>{password}</p>
       <button onClick={handleCopyPassword}>Copy Password</button>
