@@ -1,129 +1,107 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function PasswordGenerator() {
   const [password, setPassword] = useState('');
-  const [passwordLength, setPasswordLength] = useState(12);
-  const [includeDigits, setIncludeDigits] = useState(true);
-  const [includeLetters, setIncludeLetters] = useState(true);
-  const [includeUppercaseLetters, setIncludeUppercaseLetters] = useState(true);
+  const [passwordLength, setPasswordLength] = useState(8);
   const [includeSpecialChars, setIncludeSpecialChars] = useState(false);
-  const [includeDuplicateChars, setIncludeDuplicateChars] = useState(true);
+  const [includeNumbers, setIncludeNumbers] = useState(true);
+  const [includeUpperCase, setIncludeUpperCase] = useState(true);
+  const [avoidDuplicates, setAvoidDuplicates] = useState(false);
 
-  function handlePasswordLengthChange(event) {
-    setPasswordLength(event.target.value);
-  }
+  const handleGeneratePassword = () => {
+    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const numberChars = '0123456789';
+    const specialChars = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
+    let availableChars = lowercaseChars;
+    let generatedPassword = '';
 
-  function handleIncludeDigitsChange(event) {
-    setIncludeDigits(event.target.checked);
-  }
-
-  function handleIncludeLettersChange(event) {
-    setIncludeLetters(event.target.checked);
-  }
-
-  function handleIncludeUppercaseLettersChange(event) {
-    setIncludeUppercaseLetters(event.target.checked);
-  }
-
-  function handleIncludeSpecialCharsChange(event) {
-    setIncludeSpecialChars(event.target.checked);
-  }
-
-  function handleIncludeDuplicateCharsChange(event) {
-    setIncludeDuplicateChars(event.target.checked);
-  }
-
-  function generatePassword() {
-    const length = passwordLength;
-    let charset = '';
-    if (includeDigits) {
-      charset += '0123456789';
+    if (includeUpperCase) {
+      availableChars += uppercaseChars;
     }
-    if (includeLetters) {
-      charset += 'abcdefghijklmnopqrstuvwxyz';
+
+    if (includeNumbers) {
+      availableChars += numberChars;
     }
-    if (includeUppercaseLetters) {
-      charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    }
+
     if (includeSpecialChars) {
-      charset += '!@#$%^&*()_+-={}[]|;:"<>,.?/~`';
+      availableChars += specialChars;
     }
-    let newPassword = '';
-    for (let i = 0; i < length; i++) {
-      let newChar = '';
-      do {
-        newChar = charset.charAt(Math.floor(Math.random() * charset.length));
-      } while (!includeDuplicateChars && newPassword.includes(newChar));
-      newPassword += newChar;
+
+    for (let i = 0; i < passwordLength; i++) {
+      let randomIndex = Math.floor(Math.random() * availableChars.length);
+      let randomChar = availableChars[randomIndex];
+
+      if (avoidDuplicates && generatedPassword.includes(randomChar)) {
+        i--;
+        continue;
+      }
+
+      generatedPassword += randomChar;
     }
-    setPassword(newPassword);
-  }
+
+    setPassword(generatedPassword);
+  };
+
+  const handleCopyPassword = () => {
+    navigator.clipboard.writeText(password);
+  };
 
   return (
     <div>
       <label>
-        Password length:
+        Password Length:
         <input
           type="range"
           min="8"
           max="32"
           value={passwordLength}
-          onChange={handlePasswordLengthChange}
+          onChange={(e) => setPasswordLength(e.target.value)}
         />
-        {passwordLength}
+        <span>{passwordLength}</span>
       </label>
       <br />
       <label>
-        Include digits:
-        <input
-          type="checkbox"
-          checked={includeDigits}
-          onChange={handleIncludeDigitsChange}
-        />
-      </label>
-      <br />
-      <label>
-        Include letters:
-        <input
-          type="checkbox"
-          checked={includeLetters}
-          onChange={handleIncludeLettersChange}
-        />
-      </label>
-      <br />
-      <label>
-        Include uppercase letters:
-        <input
-          type="checkbox"
-          checked={includeUppercaseLetters}
-          onChange={handleIncludeUppercaseLettersChange}
-        />
-      </label>
-      <br />
-      <label>
-        Include special characters:
+        Include Special Characters:
         <input
           type="checkbox"
           checked={includeSpecialChars}
-          onChange={handleIncludeSpecialCharsChange}
+          onChange={(e) => setIncludeSpecialChars(e.target.checked)}
         />
       </label>
       <br />
       <label>
-        Include duplicate characters:
+        Include Numbers:
         <input
           type="checkbox"
-          checked={includeDuplicateChars}
-          onChange={handleIncludeDuplicateCharsChange}
+          checked={includeNumbers}
+          onChange={(e) => setIncludeNumbers(e.target.checked)}
         />
       </label>
       <br />
-      <button onClick={generatePassword}>Generate Password</button>
+      <label>
+        Include Uppercase:
+        <input
+          type="checkbox"
+          checked={includeUpperCase}
+          onChange={(e) => setIncludeUpperCase(e.target.checked)}
+        />
+      </label>
       <br />
-      <input type="text" value={password} readOnly />
+      <label>
+        Avoid Duplicates:
+        <input
+          type="checkbox"
+          checked={avoidDuplicates}
+          onChange={(e) => setAvoidDuplicates(e.target.checked)}
+        />
+      </label>
+      <br />
+      <button onClick={handleGeneratePassword}>Generate Password</button>
+      <p>{password}</p>
+      <button onClick={handleCopyPassword}>Copy Password</button>
     </div>
   );
 }
-
 
 export default PasswordGenerator;
