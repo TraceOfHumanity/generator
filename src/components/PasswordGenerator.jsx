@@ -6,6 +6,7 @@ function PasswordGenerator() {
   const [includeDigits, setIncludeDigits] = useState(true);
   const [includeLetters, setIncludeLetters] = useState(true);
   const [includeSpecialChars, setIncludeSpecialChars] = useState(false);
+  const [includeUppercaseLetters, setIncludeUppercaseLetters] = useState(false);
 
   function generatePassword() {
     const length = passwordLength;
@@ -14,7 +15,10 @@ function PasswordGenerator() {
       charset += '0123456789';
     }
     if (includeLetters) {
-      charset += 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      charset += 'abcdefghijklmnopqrstuvwxyz';
+    }
+    if (includeUppercaseLetters) {
+      charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     }
     if (includeSpecialChars) {
       charset += '!@#$%^&*()_+-={}[]|;:"<>,.?/~`';
@@ -42,6 +46,10 @@ function PasswordGenerator() {
     setIncludeSpecialChars(event.target.checked);
   }
 
+  function handleIncludeUppercaseLettersChange(event) {
+    setIncludeUppercaseLetters(event.target.checked);
+  }
+
   return (
     <div>
       <p>Your password is: {password}</p>
@@ -67,11 +75,20 @@ function PasswordGenerator() {
       </label>
       <br />
       <label>
-        Include letters:
+        Include lowercase letters:
         <input
           type="checkbox"
           checked={includeLetters}
           onChange={handleIncludeLettersChange}
+        />
+      </label>
+      <br />
+      <label>
+        Include uppercase letters:
+        <input
+          type="checkbox"
+          checked={includeUppercaseLetters}
+          onChange={handleIncludeUppercaseLettersChange}
         />
       </label>
       <br />
