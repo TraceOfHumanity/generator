@@ -1,0 +1,10 @@
+{
+    "Title": "password generator",
+    "Length": "Password length",
+    "Special": "Special Characters",
+    "Numbers": "Numbers",
+    "Uppercase": "Uppercase",
+    "Duplicates": "Avoid Duplicates",
+    "Generate": "Generate Password",
+    "Password": "Your password"
+}
