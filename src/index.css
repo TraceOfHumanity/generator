@@ -232,3 +232,6 @@ input[type="range"]::-moz-range-thumb {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+button {
+  cursor: pointer;
+}
