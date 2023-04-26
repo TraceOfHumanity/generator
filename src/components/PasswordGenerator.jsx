@@ -48,7 +48,7 @@ function PasswordGenerator() {
   };
 
   return (
-    <div className="z-10"> 
+    <div className="absolute text-white"> 
       <label>
         Password Length:
         <input
