@@ -20,7 +20,7 @@ input[type="range"] {
   display: block;
   width: 100%;
   -webkit-appearance: none;
-  background: linear-gradient(90deg, red,orange, green);
+  background: linear-gradient(90deg, red, orange, green);
   height: 6px;
   border-radius: 6px;
   outline: none;
@@ -52,35 +52,35 @@ input[type="range"]::-moz-range-thumb {
 .gradient-text {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  -webkit-animation: Gradient 10s ease infinite;
-  -moz-animation: Gradient 10s ease infinite;
-  animation: Gradient 10s ease infinite;
+  -webkit-animation: Gradient 5s ease infinite;
+  -moz-animation: Gradient 5s ease infinite;
+  animation: Gradient 5s ease infinite;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
-.gradient-text:nth-child(1){
-  animation-delay: calc(1s /2);
+.gradient-text:nth-child(1) {
+  animation-delay: calc(1s / 2);
 }
-.gradient-text:nth-child(2){
-  animation-delay: calc(2s /2) ;
+.gradient-text:nth-child(2) {
+  animation-delay: calc(2s / 2);
 }
-.gradient-text:nth-child(3){
-  animation-delay: calc(3s /2);
+.gradient-text:nth-child(3) {
+  animation-delay: calc(3s / 2);
 }
-.gradient-text:nth-child(4){
-  animation-delay: calc(4s /2);
+.gradient-text:nth-child(4) {
+  animation-delay: calc(4s / 2);
 }
-.gradient-text:nth-child(5){
-  animation-delay: calc(5s /2);
+.gradient-text:nth-child(5) {
+  animation-delay: calc(5s / 2);
 }
-.gradient-text:nth-child(6){
-  animation-delay: calc(6s /2);
+.gradient-text:nth-child(6) {
+  animation-delay: calc(6s / 2);
 }
-.gradient-text:nth-child(7){
-  animation-delay: calc(7s /2);
+.gradient-text:nth-child(7) {
+  animation-delay: calc(7s / 2);
 }
-.gradient-text:nth-child(8){
-  animation-delay: calc(8s /2);
+.gradient-text:nth-child(8) {
+  animation-delay: calc(8s / 2);
 }
 
 @-webkit-keyframes Gradient {
@@ -118,7 +118,7 @@ input[type="range"]::-moz-range-thumb {
     background-position: 0% 50%;
   }
 }
-.btn {
+/* .btn {
   position: relative;
   width: 100%;
   height: 50px;
@@ -134,10 +134,9 @@ input[type="range"]::-moz-range-thumb {
   justify-content: center;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(0, 217, 255, 0.194);
+  border-bottom: 1px solid rgba(0, 217, 255, 0.194);
   border-radius: 30px;
-  /* color: #fff; */
   z-index: 1;
   font-weight: 500;
   letter-spacing: 1;
@@ -173,7 +172,6 @@ input[type="range"]::-moz-range-thumb {
   transition: translatex(-50%);
   bottom: 0px;
   transition: 0.5s;
-  /* background: red; */
   transition-delay: 0;
   transform: translateX(-50%);
   border-radius: 5px;
@@ -185,31 +183,52 @@ input[type="range"]::-moz-range-thumb {
   width: 20%;
   transition-delay: 0.1s;
   border-radius: 10px;
-}
-/* .btn:after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 30px;
-  height: 10px;
-  transition: translatex(-50%);
-  top: -5px;
-  transition: 0.5s;
-  background: red;
-  transition-delay: 0;
-  transform: translateX(-50%);
-  border-radius: 5px;
-} */
-/* .btn:hover:after {
-  left: 50%;
-  top: 0;
-  height: 50px;
-  width: 30px;
-  transition-delay: 0.1s;
-} */
+} 
+
 .btn::before
  {
   background: #15ecff;
   box-shadow: 0 0 10px #00eaff, 0 0 10px #00eaff, 0 0 10px #00eaff,
     0 0 10px #00eaff;
+}
+*/
+
+.checkbox {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox .checkmark {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 18px;
+  width: 18px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid #00bacb;
+}
+
+.checkbox:hover .checkmark {
+  background-color: #00c8ff44;
+}
+
+.checkbox input:checked ~ .checkmark:after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid rgb(0, 191, 255);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
