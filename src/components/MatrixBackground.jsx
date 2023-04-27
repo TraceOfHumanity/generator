@@ -54,7 +54,7 @@ const MatrixBackground = () => {
     <div className="bg-black w-full h-full -z-20 relative">
 
       <canvas 
-        className="-z-10 opacity-50"
+        className="-z-10 opacity-40"
         ref={canvasRef}
         style={{
           position: "absolute",
