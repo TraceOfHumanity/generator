@@ -8,7 +8,7 @@ function PasswordGenerator(props) {
     i18n.changeLanguage(language);
   };
 
-  const [password, setPassword] = useState(`${t("Password")}`);
+  const [password, setPassword] = useState('...');
   const [passwordLength, setPasswordLength] = useState(12);
   const [includeSpecialChars, setIncludeSpecialChars] = useState(false);
   const [includeNumbers, setIncludeNumbers] = useState(true);
@@ -55,7 +55,7 @@ function PasswordGenerator(props) {
   };
 
   return (
-    <div className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black bg-opacity-30 backdrop-blur-[2px] text-white border-[#00eaff] border-b-[1px] border-r-2  w-80 max-w-[90%] shadow-lg shadow-inner shadow-teal-950">
+    <div className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl backdrop-blur-sm text-white border-[#00eaff] border-b-[1px] border-r-2  w-80 max-w-[90%]  shadow-inner shadow-teal-950">
       <div className="relative w-full px-2 py-3 flex flex-col">
         <div className="gradient-text absolute right-0  bottom-full flex">
           <button
@@ -94,7 +94,7 @@ function PasswordGenerator(props) {
             checked={includeSpecialChars}
             onChange={(e) => setIncludeSpecialChars(e.target.checked)}
           />
-          <span className="checkmark"></span>
+          <span className="cursor-pointer checkmark"></span>
         </label>
         <label className="mt-1 checkbox gradient-text font-bold">
           {t("Numbers")}:
@@ -103,7 +103,7 @@ function PasswordGenerator(props) {
             checked={includeNumbers}
             onChange={(e) => setIncludeNumbers(e.target.checked)}
           />
-          <span className="checkmark"></span>
+          <span className="cursor-pointer checkmark"></span>
         </label>
 
         <label className="mt-1 checkbox gradient-text font-bold">
@@ -113,7 +113,7 @@ function PasswordGenerator(props) {
             checked={includeUpperCase}
             onChange={(e) => setIncludeUpperCase(e.target.checked)}
           />
-          <span className="checkmark"></span>
+          <span className="cursor-pointer checkmark"></span>
         </label>
 
         <label className="mt-1 checkbox gradient-text font-bold">
@@ -123,7 +123,7 @@ function PasswordGenerator(props) {
             checked={avoidDuplicates}
             onChange={(e) => setAvoidDuplicates(e.target.checked)}
           />
-          <span className="checkmark"></span>
+          <span className="cursor-pointer checkmark"></span>
         </label>
 
         <button
@@ -132,9 +132,9 @@ function PasswordGenerator(props) {
         >
           <p>{t("Generate")}</p>
         </button>
-        <div className="flex gradient-text">
+        <div className="flex gradient-text mt-2">
           <p className=" text-sm justify-between w-full">{password}</p>
-          <button className=" text-[#00eaff]" onClick={handleCopyPassword}>
+          <button className=" text-[#00eaff]" onClick={handleCopyPassword} title="Copy">
             <RxCopy />
           </button>
         </div>
