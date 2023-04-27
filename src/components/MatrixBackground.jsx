@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from "react";
 const MatrixBackground = () => {
   const canvasRef = useRef(null);
   const w = document.body.offsetWidth;
-  const h = document.body.offsetHeight;
+  const h = document.body.offsetWidth * 2;
   const cols = Math.floor(w / 20) + 1;
   const ypos = Array(cols).fill(0);
 
@@ -27,7 +27,7 @@ const MatrixBackground = () => {
       ctx.font = "15pt monospace";
 
       ypos.forEach((y, ind) => {
-        const text = String.fromCharCode(Math.random() * 128);
+        const text = String.fromCharCode(Math.random() * 256);
         const x = ind * 20;
 
         // Calculate the hue value based on the current time and column index
@@ -47,21 +47,21 @@ const MatrixBackground = () => {
 
     const interval = setInterval(matrix, 50);
 
-    return () => clearInterval(interval);
-  }, [canvasRef]);
+    // return () => clearInterval(interval);  
+  }, []);
 
   return (
     <div className="bg-black w-full h-full -z-20 relative">
 
-      <canvas
-        className="-z-10 opacity-20"
+      <canvas 
+        className="-z-10 opacity-50"
         ref={canvasRef}
         style={{
           position: "absolute",
           top: 0,
           left: 0,
-          width: "100%",
-          height: "100%",
+          // width: "100%",
+          // height: "100%",
         }}
       ></canvas>
     </div>
